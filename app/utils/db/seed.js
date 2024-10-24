@@ -1,4 +1,3 @@
-const logger = require("../common/logger");
 const UsersSeeder = require("../../seeders/users.seeder");
 const RolesSeeder = require("../../seeders/roles.seeder");
 

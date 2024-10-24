@@ -1,6 +1,5 @@
 const { Validator } = require("node-input-validator");
 const { validationConf } = require("../../consts/validation");
-const logger = require("./logger");
 const { COMMON_STRINGS } = require("../../consts/response/common");
 const { sendResponse } = require("./helper");
 

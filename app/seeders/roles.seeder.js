@@ -1,5 +1,4 @@
 const CMSRoleModel = require("../models/cms/role.model");
-const logger = require("../utils/common/logger");
 
 const data = [
   {

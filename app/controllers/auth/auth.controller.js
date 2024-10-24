@@ -2,7 +2,6 @@ const bcryptSalt = process.env.BCRYPT_SALT;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 const { sendResponse } = require("../../utils/common/helper");
-const logger = require("../../utils/common/logger");
 const { COMMON_STRINGS } = require("../../consts/response/common");
 const { AUTH_STRINGS } = require("../../consts/response/auth");
 const UserModel = require("../../models/auth/user.model");

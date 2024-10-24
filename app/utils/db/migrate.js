@@ -3,7 +3,6 @@ const path = require("path");
 const { configSyncOption } = require("../common/helper");
 const { sequelize } = require("./connector");
 const Sequelize = require("sequelize");
-const logger = require("../common/logger");
 require("dotenv").config();
 
 const syncOption = configSyncOption();

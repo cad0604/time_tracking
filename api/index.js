@@ -5,7 +5,7 @@ const path = require("path");
 const swaggerUI = require("swagger-ui-express");
 require("dotenv").config();
 const { SwaggerSpecs, SwaggerOptions } = require("../app/utils/common/swagger");
-const logger = require("../app/utils/common/logger");
+
 const { createDatabase } = require("../app/utils/db/connector");
 app.set("trust proxy", true);
 app.use(express.static(path.join(process.cwd(), "/public")));

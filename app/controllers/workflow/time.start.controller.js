@@ -1,5 +1,4 @@
 const { sendResponse } = require("../../utils/common/helper");
-const logger = require("../../utils/common/logger");
 const { COMMON_STRINGS } = require("../../consts/response/common");
 const { WORKFLOW_STRINGS } = require("../../consts/response/workflow");
 const TimeStartModel = require("../../models/workflow/time_start.model");

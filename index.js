@@ -5,7 +5,6 @@ const path = require("path");
 const swaggerUI = require("swagger-ui-express");
 require("dotenv").config();
 const { SwaggerSpecs, SwaggerOptions } = require("./app/utils/common/swagger");
-const logger = require("./app/utils/common/logger");
 const { createDatabase } = require("./app/utils/db/connector");
 // const cron = require('./app/cron/cron');
 app.set("trust proxy", true);
@@ -42,5 +41,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.SERVER_PORT || 8090;
 
 app.listen(PORT, () => {
-  logger.info(`Server is running on port ${PORT}.`);
+  console.log(`Server is running on port ${PORT}.`);
 });

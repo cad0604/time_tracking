@@ -1,5 +1,4 @@
 const tesseract = require("node-tesseract-ocr");
-const logger = require("./logger");
 
 const pdf2text = (path) => {};
 

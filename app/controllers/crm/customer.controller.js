@@ -1,5 +1,4 @@
 const { sendResponse } = require("../../utils/common/helper");
-const logger = require("../../utils/common/logger");
 const { COMMON_STRINGS } = require("../../consts/response/common");
 const UserModel = require("../../models/auth/user.model");
 const { Op } = require("sequelize");
