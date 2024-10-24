@@ -1,7 +1,7 @@
 const UsersSeeder = require("../../seeders/users.seeder");
 const RolesSeeder = require("../../seeders/roles.seeder");
 
-exports.seedDatabase = async () => {
+const seedDatabase = async () => {
   try {
     console.log("Database seeding...");
 
@@ -13,5 +13,5 @@ exports.seedDatabase = async () => {
   }
 };
 
-// seedDatabase()
+seedDatabase();
 //For vercel deploymnet

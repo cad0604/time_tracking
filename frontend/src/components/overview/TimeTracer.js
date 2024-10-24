@@ -39,7 +39,7 @@ const CustomerTimeTracer = () => {
   const isMobileView = useMobileViewport();
   /*------------------------------get GPS position ----------------------*/
   const makeStartGPSPosition = () => {
-    if ("geolacation" in navigator) {
+    if ("geolocation" in navigator) {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
           setStartLatitude(position.coords.latitude);
@@ -83,7 +83,7 @@ const CustomerTimeTracer = () => {
   };
 
   const makeEndGPSPosition = () => {
-    if ("geolacation" in navigator) {
+    if ("geolocation" in navigator) {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
           setEndLatitude(position.coords.latitude);
