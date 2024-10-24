@@ -19,7 +19,7 @@ exports.AUTH_STRINGS = {
   AUTH_ACCOUNT_INCOMPLETE:
     "You haven't completed the onboarding. Please complete that.",
   AUTH_PASSWORD_CONFIRM:
-    "Password should be contained Uppercase, Lowercase, Special Characters and Numeric Values",
+    "La contraseña debe contener mayúsculas, minúsculas, caracteres especiales y valores numéricos.",
   AUTH_TOKEN_EXPIRED: "Token Expired. Try to login again.",
   AUTH_TOKEN_PROVIDED: "No token provided!",
   AUTH_REQUIRE_ADMIN_ROLE: "Require Admin Role!",
