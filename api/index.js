@@ -41,7 +41,7 @@ const modelsFolderPaths = [
 const db = { sequelize, Sequelize, models: {} };
 const { seedDatabase } = require("../app/utils/db/seed");
 
-// createDatabase();
+createDatabase();
 require("../app/routes/index")(app);
 
 app.use((req, res, next) => {
