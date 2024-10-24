@@ -1,16 +1,22 @@
 export const required = {
   required: true,
-  message: "Feltet er påkrevd",
+  message: "El campo es obligatorio",
 };
 
 export const email = {
   type: "email",
-  message: "Vennligst skriv inn en gyldig e-post",
+  message: "Por favor introduce un correo electrónico válido",
+};
+
+export const passwordVaildate = {
+  pattern: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$",
+  message:
+    "La contraseña debe contener una letra mayúscula, un número y una letra especial.",
 };
 
 export const min = {
   min: 6,
-  message: "Passordet må være minst 6 tegn",
+  message: "La contraseña debe tener al menos 6 caracteres.",
 };
 
 export const match = ({ getFieldValue }) => ({
@@ -18,6 +24,6 @@ export const match = ({ getFieldValue }) => ({
     if (!value || getFieldValue("password") === value) {
       return Promise.resolve();
     }
-    return Promise.reject("Passordene samsvarer ikke");
+    return Promise.reject("Las contraseñas no coinciden");
   },
 });

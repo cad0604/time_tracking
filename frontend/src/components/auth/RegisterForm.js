@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { Form } from "antd";
 
-import { required } from "config/Validation";
+import { match, passwordVaildate, required } from "config/Validation";
 
 import BrannInput from "components/ui/input/Input";
 import BrannSubmitButton from "components/ui/button/SubmitButton";
@@ -48,10 +48,10 @@ export default function RegisterForm({ updateStep }) {
       <Form.Item name="dni" rules={[required]}>
         <BrannInput placeholder="DNI *" />
       </Form.Item>
-      <Form.Item name="password" rules={[required]}>
+      <Form.Item name="password" rules={[required, passwordVaildate]}>
         <BrannPasswordInput placeholder="Nueva contraseña *" />
       </Form.Item>
-      <Form.Item name="confirm_password" rules={[required]}>
+      <Form.Item name="confirm_password" rules={[required, match]}>
         <BrannPasswordInput placeholder="Repita la contraseña *" />
       </Form.Item>
       <Form.Item>
