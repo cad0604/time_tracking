@@ -9,6 +9,8 @@ const logger = require("../app/utils/common/logger");
 const { createDatabase } = require("../app/utils/db/connector");
 app.set("trust proxy", true);
 app.use(express.static(path.join(process.cwd(), "/public")));
+app.use(express.static(path.join(process.cwd(), "frontend", "build")));
+
 app.use(cors());
 app.use(express.json({ limit: "50mb", extended: true }));
 app.use(
@@ -30,14 +32,17 @@ const { sequelize } = require("../app/utils/db/connector");
 const Sequelize = require("sequelize");
 require("dotenv").config();
 
-const modelsFolderPaths = ["../app/models/auth", "../app/models/cms"];
+const modelsFolderPaths = [
+  "../app/models/auth",
+  "../app/models/cms",
+  "../app/models/workflow",
+];
 
 const db = { sequelize, Sequelize, models: {} };
 const { seedDatabase } = require("../app/utils/db/seed");
-app.use(express.static(path.join(process.cwd(), "frontend", "build")));
 
-require("../app/routes/index")(app);
 createDatabase();
+require("../app/routes/index")(app);
 
 app.use((req, res, next) => {
   res.sendFile(path.resolve(process.cwd(), "frontend", "build", "index.html"));
