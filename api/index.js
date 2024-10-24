@@ -41,7 +41,7 @@ const modelsFolderPaths = [
 const db = { sequelize, Sequelize, models: {} };
 const { seedDatabase } = require("../app/utils/db/seed");
 
-createDatabase();
+// createDatabase();
 require("../app/routes/index")(app);
 
 app.use((req, res, next) => {
@@ -63,32 +63,32 @@ const syncOptions = {
   // alter: true, // Only update schema changes without dropping data
   force: false, // Drop and re-create tables
 };
-// app.listen(PORT, () => {
-//   logger.info(`Server is running on port ${PORT}.`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
+
+// modelsFolderPaths.map((modelsFolderPath) => {
+//   const dir = path.join(__dirname, modelsFolderPath);
+//   fs.readdirSync(dir).forEach((file) => {
+//     const modelPath = path.join(dir, file);
+//     const model = require(modelPath);
+//     db.models[model.name] = model;
+//   });
+// });
+// Object.keys(db.models).forEach((key) => {
+//   if (db.models[key].hasOwnProperty("associate")) {
+//     db.models[key].associate(db.models);
+//   }
 // });
 
-modelsFolderPaths.map((modelsFolderPath) => {
-  const dir = path.join(__dirname, modelsFolderPath);
-  fs.readdirSync(dir).forEach((file) => {
-    const modelPath = path.join(dir, file);
-    const model = require(modelPath);
-    db.models[model.name] = model;
-  });
-});
-Object.keys(db.models).forEach((key) => {
-  if (db.models[key].hasOwnProperty("associate")) {
-    db.models[key].associate(db.models);
-  }
-});
-
-db.sequelize
-  .sync(syncOptions)
-  .then(async () => seedDatabase())
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log("servier is running on 8080");
-    });
-  })
-  .catch((error) => {
-    console.log("Initializing a server:", error);
-  });
+// db.sequelize
+//   .sync(syncOptions)
+//   .then(async () => seedDatabase())
+//   .then(() => {
+//     app.listen(PORT, () => {
+//       console.log("servier is running on 8080");
+//     });
+//   })
+//   .catch((error) => {
+//     console.log("Initializing a server:", error);
+//   });
