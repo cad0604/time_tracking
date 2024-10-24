@@ -4,13 +4,13 @@ const RolesSeeder = require("../../seeders/roles.seeder");
 
 exports.seedDatabase = async () => {
   try {
-    logger.info("Database seeding...");
+    console.log("Database seeding...");
 
     await RolesSeeder();
     await UsersSeeder();
-    logger.info("Database sync successfully.");
+    console.log("Database sync successfully.");
   } catch (error) {
-    logger.error(`In Database sync: ${error.message}`);
+    console.log(`In Database sync: ${error.message}`);
   }
 };
 

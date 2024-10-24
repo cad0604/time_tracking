@@ -15,7 +15,7 @@ exports.getCustomers = async (req, res) => {
     if (!data) return sendResponse(res, 404, null, COMMON_STRINGS.NOT_FOUND);
     return sendResponse(res, 200, data);
   } catch (err) {
-    logger.error(`Error in getCustomers: ${err.message}`);
+    console.log(`Error in getCustomers: ${err.message}`);
     return sendResponse(
       res,
       500,

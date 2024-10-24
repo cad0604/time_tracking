@@ -13,7 +13,7 @@ const data = [
 ];
 
 const RolesSeeder = async () => {
-  logger.info("RoleSeeder is running.");
+  console.log("RoleSeeder is running.");
 
   try {
     const role = await CMSRoleModel.findOne({
@@ -23,7 +23,7 @@ const RolesSeeder = async () => {
       await CMSRoleModel.bulkCreate(data);
     }
   } catch (error) {
-    logger.error(`In RoleSeeder: ${error.message}`);
+    console.log(`In RoleSeeder: ${error.message}`);
   }
 };
 

@@ -12,7 +12,7 @@ const image2text = (path) => {
       text,
     };
   } catch (error) {
-    logger.error(`Error in an image OCR: ${error.message}`);
+    console.log(`Error in an image OCR: ${error.message}`);
     return {
       status: "error",
     };

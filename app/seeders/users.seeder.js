@@ -16,7 +16,7 @@ const userData = [
 ];
 
 const UsersSeeder = async () => {
-  logger.info("UserSeeder is running.");
+  console.log("UserSeeder is running.");
 
   try {
     const user = await UserModel.findOne({
@@ -26,7 +26,7 @@ const UsersSeeder = async () => {
       await UserModel.bulkCreate(userData);
     }
   } catch (error) {
-    logger.error(`In UserSeeder: ${error.message}`);
+    console.log(`In UserSeeder: ${error.message}`);
   }
 };
 

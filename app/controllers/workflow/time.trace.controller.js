@@ -37,7 +37,7 @@ exports.getTimeTracking = async (req, res) => {
     if (!data) return sendResponse(res, 404, null, COMMON_STRINGS.NOT_FOUND);
     return sendResponse(res, 200, data);
   } catch (err) {
-    logger.error(`Error in getTasks: ${err.message}`);
+    console.log(`Error in getTasks: ${err.message}`);
     return sendResponse(
       res,
       500,
@@ -75,7 +75,7 @@ exports.addTimeTrace = async (req, res) => {
       WORKFLOW_STRINGS.TIMER_TRACKING_END_SUCCESS
     );
   } catch (err) {
-    logger.error(`Error in addTask: ${err.message}`);
+    console.log(`Error in addTask: ${err.message}`);
     return sendResponse(
       res,
       500,

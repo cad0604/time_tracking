@@ -40,7 +40,7 @@ exports.validateRequest = (req, res, next) => {
         // If validation fails, construct error response
         const errorMessages = Object.values(validation.errors).map((error) => {
           const errorMessage = error.message || "Validation error";
-          logger.error(`Error in form validation: ${errorMessage}`);
+          console.log(`Error in form validation: ${errorMessage}`);
           return errorMessage;
         });
 
@@ -55,7 +55,7 @@ exports.validateRequest = (req, res, next) => {
     })
     .catch((error) => {
       // Handle unexpected validation errors
-      logger.error(`Error during form validation: ${error.message}`);
+      console.log(`Error during form validation: ${error.message}`);
       return sendResponse(
         res,
         500,

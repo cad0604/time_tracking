@@ -28,7 +28,7 @@ const doMigration = () => {
     });
     db.sequelize.sync(syncOption);
   } catch (err) {
-    logger.error(`Error in migration: ${err.message}`);
+    console.log(`Error in migration: ${err.message}`);
   }
 };
 

@@ -86,9 +86,9 @@ db.sequelize
   .then(async () => seedDatabase())
   .then(() => {
     app.listen(PORT, () => {
-      logger.info(`Server is running on port ${PORT}.`);
+      console.log("servier is running on 8080");
     });
   })
   .catch((error) => {
-    logger.error("Initializing a server:", error);
+    console.log("Initializing a server:", error);
   });

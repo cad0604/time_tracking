@@ -31,7 +31,7 @@ exports.signup = async (req, res) => {
 
     return sendResponse(res, 200, null, AUTH_STRINGS.AUTH_USER_SINGUP_SUCCESS);
   } catch (err) {
-    logger.error(`Error in signup: ${err.message}`);
+    console.log(`Error in signup: ${err.message}`);
     return sendResponse(
       res,
       500,
@@ -96,7 +96,7 @@ exports.signin = async (req, res) => {
       AUTH_STRINGS.AUTH_USER_SIGNIN_SUCCESS
     );
   } catch (err) {
-    logger.error(`Error in signin: ${err.message}`);
+    console.log(`Error in signin: ${err.message}`);
     return sendResponse(
       res,
       500,
