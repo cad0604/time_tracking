@@ -45,6 +45,7 @@ const CustomerTimeTracer = () => {
           setStartLatitude(position.coords.latitude);
           setStartLongitude(position.coords.longitude);
           setGpsError(null);
+
           dispatch({
             type: actions.ADD_TIME_START,
             payload: {
@@ -65,8 +66,9 @@ const CustomerTimeTracer = () => {
         },
         { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
       );
-
-      return () => navigator.geolocation.clearWatch(watchId);
+      setTimeout(() => {
+        navigator.geolocation.clearWatch(watchId);
+      }, 3000);
     } else {
       setGpsError("Geolocalización no soportada por este navegador.");
       dispatch({
@@ -114,7 +116,9 @@ const CustomerTimeTracer = () => {
         { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
       );
 
-      return () => navigator.geolocation.clearWatch(watchId);
+      setTimeout(() => {
+        navigator.geolocation.clearWatch(watchId);
+      }, 3000);
     } else {
       setGpsError("Geolocalización no soportada por este navegador.");
       const end = new Date();
