@@ -55,13 +55,11 @@ const CustomerTimeTracer = () => {
           });
         },
         (err) => {
-          setGpsError(err);
+          setGpsError(err.message);
           dispatch({
             type: actions.ADD_TIME_START,
             payload: {
               startTime: startedTime,
-              latitude: startLatitude,
-              longitidu: startLongitidu,
             },
           });
         },
@@ -75,8 +73,6 @@ const CustomerTimeTracer = () => {
         type: actions.ADD_TIME_START,
         payload: {
           startTime: startedTime,
-          latitude: startLatitude,
-          longitidu: startLongitidu,
         },
       });
     }
@@ -95,25 +91,23 @@ const CustomerTimeTracer = () => {
             payload: {
               startTime: startedTime,
               endTime: end,
-              startLatitude: startLatitude,
-              startLongitidu: startLongitidu,
+              startLatitude: startLatitude ? startLatitude : 0,
+              startLongitidu: startLongitidu ? startLongitidu : 0,
               endLatitude: endLatitude,
               endLongitidu: endLongitidu,
             },
           });
         },
         (err) => {
-          setGpsError(err);
+          setGpsError(err.message);
           const end = new Date();
           dispatch({
             type: timeTrackingActions.ADD_TIME_TRACKING,
             payload: {
               startTime: startedTime,
               endTime: end,
-              startLatitude: startLatitude,
-              startLongitidu: startLongitidu,
-              endLatitude: endLatitude,
-              endLongitidu: endLongitidu,
+              startLatitude: startLatitude ? startLatitude : 0,
+              startLongitidu: startLongitidu ? startLongitidu : 0,
             },
           });
         },
@@ -129,10 +123,8 @@ const CustomerTimeTracer = () => {
         payload: {
           startTime: startedTime,
           endTime: end,
-          startLatitude: startLatitude,
-          startLongitidu: startLongitidu,
-          endLatitude: endLatitude,
-          endLongitidu: endLongitidu,
+          startLatitude: startLatitude ? startLatitude : 0,
+          startLongitidu: startLongitidu ? startLongitidu : 0,
         },
       });
     }
@@ -140,7 +132,7 @@ const CustomerTimeTracer = () => {
 
   useEffect(() => {
     if (gpsError !== null) {
-      showWarningNotification("Error", gpsError);
+      showWarningNotification("Error", `${gpsError}`);
       setGpsError(null);
     }
   }, [gpsError]);
