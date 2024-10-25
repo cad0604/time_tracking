@@ -31,9 +31,9 @@ const CustomerTimeTracer = () => {
 
   //GPS tracking
   const [startLatitude, setStartLatitude] = useState(null);
-  const [startLongitidu, setStartLongitidu] = useState(null);
+  const [startLongitude, setStartLongitude] = useState(null);
   const [endLatitude, setEndLatitude] = useState(null);
-  const [endLongitidu, setEndLongitidu] = useState(null);
+  const [endLongitude, setEndLongitude] = useState(null);
   const [gpsError, setGpsError] = useState(null);
 
   const isMobileView = useMobileViewport();
@@ -43,14 +43,14 @@ const CustomerTimeTracer = () => {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
           setStartLatitude(position.coords.latitude);
-          setStartLongitidu(position.coords.longitude);
+          setStartLongitude(position.coords.longitude);
           setGpsError(null);
           dispatch({
             type: actions.ADD_TIME_START,
             payload: {
               startTime: startedTime,
               latitude: startLatitude,
-              longitidu: startLongitidu,
+              longitude: startLongitude,
             },
           });
         },
@@ -83,7 +83,7 @@ const CustomerTimeTracer = () => {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
           setEndLatitude(position.coords.latitude);
-          setEndLongitidu(position.coords.longitude);
+          setEndLongitude(position.coords.longitude);
           setGpsError(null);
           const end = new Date();
           dispatch({
@@ -92,9 +92,9 @@ const CustomerTimeTracer = () => {
               startTime: startedTime,
               endTime: end,
               startLatitude: startLatitude ? startLatitude : 0,
-              startLongitidu: startLongitidu ? startLongitidu : 0,
+              startLongitude: startLongitude ? startLongitude : 0,
               endLatitude: endLatitude,
-              endLongitidu: endLongitidu,
+              endLongitude: endLongitude,
             },
           });
         },
@@ -107,7 +107,7 @@ const CustomerTimeTracer = () => {
               startTime: startedTime,
               endTime: end,
               startLatitude: startLatitude ? startLatitude : 0,
-              startLongitidu: startLongitidu ? startLongitidu : 0,
+              startLongitude: startLongitude ? startLongitude : 0,
             },
           });
         },
@@ -124,7 +124,7 @@ const CustomerTimeTracer = () => {
           startTime: startedTime,
           endTime: end,
           startLatitude: startLatitude ? startLatitude : 0,
-          startLongitidu: startLongitidu ? startLongitidu : 0,
+          startLongitude: startLongitude ? startLongitude : 0,
         },
       });
     }
@@ -161,7 +161,7 @@ const CustomerTimeTracer = () => {
 
       setStartedTimeTracer(true);
       if (timeStart.latitude) setStartLatitude(timeStart.latitude);
-      if (timeStart.longitidu) setStartLongitidu(timeStart.longitidu);
+      if (timeStart.longitude) setStartLongitude(timeStart.longitude);
     }
   }, [timeStart]);
 
