@@ -67,6 +67,22 @@ export async function getFileDownload(URL) {
   return response;
 }
 
+export async function getXlsDownload(URL) {
+  const response = await axios.get(
+    process.env.REACT_APP_SERVER_BASE_URL + `/${URL}`,
+    {
+      key: "value",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        authorization: JSON.parse(localStorage.getItem("user")).accessToken,
+      },
+      responseType: "arraybuffer",
+    }
+  );
+  return response;
+}
+
 export async function postRequestNoToken(URL, payload, config = {}) {
   setNoTokenHeader();
   const response = await axiosClient.post(`/${URL}`, payload, config);

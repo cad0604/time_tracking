@@ -16,7 +16,7 @@ const { RangePicker } = DatePicker;
 const AdminReport = () => {
   const dispatch = useDispatch();
 
-  const { timeTracking, isFetchingtimeTracking, isMakeXLS } = useSelector(
+  const { timeTracking, isFetchingtimeTracking } = useSelector(
     (state) => state.workflowTimeTracking
   );
 
@@ -136,26 +136,11 @@ const AdminReport = () => {
             },
           ])
       );
-      console.log("value", tempCustomerArray);
       setCustomerArray(tempCustomerArray);
     };
 
     if (!isEmptyObject(customers)) makeCustomerArray();
   }, [customers]);
-
-  useEffect(() => {
-    if (isMakeXLS === true) {
-      dispatch({
-        type: actions.RESET_XLS,
-      });
-
-      dispatch({
-        type: utilFileActions.FILE_DOWNLOAD,
-        payload: "./report/file.xlsx",
-        fileName: "report.xlsx",
-      });
-    }
-  }, [isMakeXLS, dispatch]);
 
   const handleUserSelect = (value) => {
     setUserId(value);
@@ -170,11 +155,16 @@ const AdminReport = () => {
   };
 
   const handleDownload = () => {
+    // dispatch({
+    //   type: actions.MAKE_XLS,
+    //   startDate: startDate,
+    //   endDate: endDate,
+    //   userId: userId,
+    // });
     dispatch({
-      type: actions.MAKE_XLS,
-      startDate: startDate,
-      endDate: endDate,
-      userId: userId,
+      type: utilFileActions.FILE_DOWNLOAD,
+      payload: "./report/file.xlsx",
+      fileName: "report.xlsx",
     });
   };
   return (

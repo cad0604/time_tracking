@@ -33,6 +33,8 @@ export function* callApi(apiFunction, ...args) {
   } catch (error) {
     console.log("testing", error);
     if (error.response.status === 401) yield put({ type: actions.LOGOUT });
+    if (error.response.data.error.includes("userId"))
+      yield put({ type: actions.LOGOUT });
     handleError(error);
     throw error;
   }

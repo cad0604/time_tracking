@@ -138,6 +138,7 @@ module.exports = function (app) {
   app.get(
     "/api/workflow/time-trace/make-file",
     [checkUserStatus],
-    controller.makeFile
+    // controller.makeFile
+    controller.testMakeFile
   );
 };

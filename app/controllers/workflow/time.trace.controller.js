@@ -8,6 +8,7 @@ const Op = Sequelize.Op;
 const XLSX = require("xlsx");
 const fs = require("fs");
 const dayjs = require("dayjs");
+const stream = require("stream");
 
 exports.getTimeTracking = async (req, res) => {
   try {
@@ -32,7 +33,6 @@ exports.getTimeTracking = async (req, res) => {
       where: { ...condition },
     });
 
-    console.log("ttt", data);
     if (!data) return sendResponse(res, 404, null, COMMON_STRINGS.NOT_FOUND);
     return sendResponse(res, 200, data);
   } catch (err) {
@@ -151,4 +151,70 @@ exports.makeFile = async (req, res) => {
   fs.writeFileSync(filePath, xlsxBinary, "binary");
 
   return sendResponse(res, 200, WORKFLOW_STRINGS.TIMER_TRACKING_CREATED_XML);
+};
+
+exports.testMakeFile = async (req, res) => {
+  let condition = {};
+  if (req.query.startDate && req.query.endDate) {
+    condition = {
+      createdAt: {
+        [Op.between]: [req.query.startDate, req.query.endDate],
+      },
+    };
+  }
+  const userId = Number(req.query.userId);
+
+  if (req.query.userId) {
+    condition = {
+      ...condition,
+      userId: userId,
+    };
+  }
+
+  const timeTrack = await TimeTraceModel.findAll({
+    where: { ...condition },
+    attributes: [
+      "startTime",
+      "startLatitude",
+      "startLongitude",
+      "endTime",
+      "endLatitude",
+      "endLongitude",
+    ],
+  });
+
+  let data = [
+    ["Comenzar", "Latitud", "Longitud", "Fin", "Latitud", "Longitud"],
+  ];
+  const data1 = await Promise.all(
+    timeTrack.map(async (item) => {
+      const newArray = [
+        dayjs(item.startTime).format("YYYY-MM-DD HH:mm:ss"),
+        item.startLatitude,
+        item.startLongitude,
+        dayjs(item.endTime).format("YYYY-MM-DD HH:mm:ss"),
+        item.endLatitude,
+        item.endLongitude,
+      ];
+      data = [...data, newArray];
+
+      return { ...item };
+    })
+  );
+
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(data);
+  XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+  const buffer = XLSX.write(wb, { type: "buffer", bookType: "xlsx" });
+
+  const readStream = new stream.PassThrough();
+  readStream.end(buffer);
+
+  res.set("Content-disposition", "attachment; filename=generated_file.xlsx");
+  res.set(
+    "Content-Type",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  );
+  readStream.pipe(res);
 };
