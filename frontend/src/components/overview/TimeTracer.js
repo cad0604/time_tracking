@@ -54,6 +54,7 @@ const CustomerTimeTracer = () => {
           });
         },
         (err) => {
+          // console.log("testing", err);
           setGpsError(err.message);
           dispatch({
             type: actions.ADD_TIME_START,
@@ -62,11 +63,11 @@ const CustomerTimeTracer = () => {
             },
           });
         },
-        { enableHighAccuracy: true, timeout: 3500, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
       );
       setTimeout(() => {
         navigator.geolocation.clearWatch(watchId);
-      }, 3000);
+      }, 4000);
     } else {
       setGpsError("Geolocalización no soportada por este navegador.");
       dispatch({
@@ -114,7 +115,7 @@ const CustomerTimeTracer = () => {
 
       setTimeout(() => {
         navigator.geolocation.clearWatch(watchId);
-      }, 3000);
+      }, 4000);
     } else {
       setGpsError("Geolocalización no soportada por este navegador.");
       const end = new Date();
