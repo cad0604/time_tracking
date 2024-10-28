@@ -19,9 +19,6 @@ exports.signup = async (req, res) => {
     if (existing)
       return sendResponse(res, 405, null, AUTH_STRINGS.AUTH_EMAIL_DUPLICATION);
 
-    if (passwordValidatePattern.test(req.body.password) === false) {
-      return sendResponse(res, 403, null, AUTH_STRINGS.AUTH_PASSWORD_CONFIRM);
-    }
     await UserModel.create({
       ...req.body,
       password: bcrypt.hashSync(req.body.password, Number(bcryptSalt)),

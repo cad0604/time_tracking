@@ -56,6 +56,7 @@ const CustomerTimeTracer = () => {
           });
         },
         (err) => {
+          console.log("ttttttttttttttt", "tttttttt");
           setGpsError(err.message);
           dispatch({
             type: actions.ADD_TIME_START,
@@ -64,7 +65,7 @@ const CustomerTimeTracer = () => {
             },
           });
         },
-        { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 3500, maximumAge: 0 }
       );
       setTimeout(() => {
         navigator.geolocation.clearWatch(watchId);
