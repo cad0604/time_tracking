@@ -32,8 +32,6 @@ const CustomerTimeTracer = () => {
   //GPS tracking
   const [startLatitude, setStartLatitude] = useState(null);
   const [startLongitude, setStartLongitude] = useState(null);
-  const [endLatitude, setEndLatitude] = useState(null);
-  const [endLongitude, setEndLongitude] = useState(null);
   const [gpsError, setGpsError] = useState(null);
 
   const isMobileView = useMobileViewport();
@@ -50,13 +48,12 @@ const CustomerTimeTracer = () => {
             type: actions.ADD_TIME_START,
             payload: {
               startTime: startedTime,
-              latitude: startLatitude,
-              longitude: startLongitude,
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
             },
           });
         },
         (err) => {
-          console.log("ttttttttttttttt", "tttttttt");
           setGpsError(err.message);
           dispatch({
             type: actions.ADD_TIME_START,
@@ -85,8 +82,6 @@ const CustomerTimeTracer = () => {
     if ("geolocation" in navigator) {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
-          setEndLatitude(position.coords.latitude);
-          setEndLongitude(position.coords.longitude);
           setGpsError(null);
           const end = new Date();
           dispatch({
@@ -96,8 +91,8 @@ const CustomerTimeTracer = () => {
               endTime: end,
               startLatitude: startLatitude ? startLatitude : 0,
               startLongitude: startLongitude ? startLongitude : 0,
-              endLatitude: endLatitude,
-              endLongitude: endLongitude,
+              endLatitude: position.coords.latitude,
+              endLongitude: position.coords.longitude,
             },
           });
         },
