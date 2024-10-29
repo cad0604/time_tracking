@@ -4,11 +4,13 @@ const app = express();
 const path = require("path");
 const swaggerUI = require("swagger-ui-express");
 require("dotenv").config();
-const { SwaggerSpecs, SwaggerOptions } = require("./app/utils/common/swagger");
-const { createDatabase } = require("./app/utils/db/connector");
-// const cron = require('./app/cron/cron');
+const { SwaggerSpecs, SwaggerOptions } = require("../app/utils/common/swagger");
+require("dotenv").config();
+
 app.set("trust proxy", true);
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(process.cwd(), "/public")));
+app.use(express.static(path.join(process.cwd(), "frontend", "build")));
+
 app.use(cors());
 app.use(express.json({ limit: "50mb", extended: true }));
 app.use(
@@ -25,20 +27,22 @@ app.all("*", (req, res, next) => {
   next();
 });
 
-require("./app/routes/index")(app);
+require("dotenv").config();
 
-createDatabase();
+// createDatabase();
+require("../app/routes/index")(app);
+
+app.use((req, res, next) => {
+  res.sendFile(path.resolve(process.cwd(), "frontend", "build", "index.html"));
+});
 
 app.use(
   "/api-docs",
   swaggerUI.serve,
   swaggerUI.setup(SwaggerSpecs, SwaggerOptions)
 );
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
-});
 
-const PORT = process.env.SERVER_PORT || 8090;
+const PORT = process.env.SERVER_PORT || 8080;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
