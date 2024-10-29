@@ -7,6 +7,7 @@ exports.ACL = {
     "POST:/api/workflow/time-start",
 
     "GET:/api/crm/customer",
+    "DELETE:/api/crm/customer",
 
     "GET:/api/workflow/time-trace/make-file",
 

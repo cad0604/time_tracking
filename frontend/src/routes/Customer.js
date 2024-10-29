@@ -9,7 +9,7 @@ const routesMap = {
 export default function CustomerRoutes() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
-  if (!isAuthenticated || user.role === "Admin") {
+  if (!isAuthenticated || user.isAdmin) {
     return <Navigate to="/autenticación/acceso" />;
   }
 

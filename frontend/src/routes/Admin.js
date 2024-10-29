@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const routesMap = {
   "/informe": lazy(() => import("pages/overview/Admin")),
+  "/tabla": lazy(() => import("pages/crm/Customer")),
 };
 
 export default function AdminRoutes() {

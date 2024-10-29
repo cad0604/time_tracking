@@ -31,7 +31,9 @@ import { getXlsDownload } from "utils/axios-client";
 
 function* xlsDownload(action) {
   try {
-    yield getXlsDownload(`workflow/time-trace/make-file`).then(
+    yield getXlsDownload(
+      `workflow/time-trace/make-file?startDate=${action.startDate}&endDate=${action.endDate}&userId=${action.userId}`
+    ).then(
       (res) => {
         const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement("a");

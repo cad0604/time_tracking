@@ -1,14 +1,14 @@
 import React from "react";
 import { Col, Row } from "antd";
-import AdminReport from "components/overview/Report";
 import AdminLayout from "layouts/Admin";
+import CustomerTable from "components/crm/CustomerTable";
 
-export default function Overview() {
+export default function CustomerPage() {
   return (
     <AdminLayout>
       <Row gutter={[0, 32]}>
         <Col span={24}>
-          <AdminReport />
+          <CustomerTable />
         </Col>
       </Row>
     </AdminLayout>

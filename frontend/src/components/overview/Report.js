@@ -155,15 +155,11 @@ const AdminReport = () => {
   };
 
   const handleDownload = () => {
-    // dispatch({
-    //   type: actions.MAKE_XLS,
-    //   startDate: startDate,
-    //   endDate: endDate,
-    //   userId: userId,
-    // });
     dispatch({
       type: utilFileActions.FILE_DOWNLOAD,
-      payload: "./report/file.xlsx",
+      startDate: startDate,
+      endDate: endDate,
+      userId: userId,
       fileName: "report.xlsx",
     });
   };

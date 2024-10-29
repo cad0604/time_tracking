@@ -34,4 +34,35 @@ module.exports = function (app) {
     [validateRequest, checkUserStatus],
     controller.getCustomers
   );
+
+  /**
+   * @openapi
+   * '/api/crm/customer':
+   *  delete:
+   *     tags:
+   *     - CRM
+   *      - Customer
+   *     summary: Delete a customer by ID
+   *     parameters:
+   *      - name: id
+   *        in: query
+   *        description: The unique Id of the customer
+   *        required: true
+   *     security:
+   *      - Authorization: []
+   *     responses:
+   *      200:
+   *        description: Removed
+   *      400:
+   *        description: Bad request
+   *      404:
+   *        description: Not Found
+   *      500:
+   *        description: Server Error
+   */
+  app.delete(
+    "/api/crm/customer",
+    [validateRequest, checkUserStatus],
+    controller.deleteCustomerById
+  );
 };

@@ -3,5 +3,8 @@ module.exports = {
     GET: {
       id: "integer",
     },
+    DELETE: {
+      id: "required|integer",
+    },
   },
 };

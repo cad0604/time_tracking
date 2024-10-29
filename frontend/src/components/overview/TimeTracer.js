@@ -67,7 +67,7 @@ const CustomerTimeTracer = () => {
       );
       setTimeout(() => {
         navigator.geolocation.clearWatch(watchId);
-      }, 4000);
+      }, 3300);
     } else {
       setGpsError("Geolocalización no soportada por este navegador.");
       dispatch({
@@ -115,7 +115,7 @@ const CustomerTimeTracer = () => {
 
       setTimeout(() => {
         navigator.geolocation.clearWatch(watchId);
-      }, 4000);
+      }, 3300);
     } else {
       setGpsError("Geolocalización no soportada por este navegador.");
       const end = new Date();
