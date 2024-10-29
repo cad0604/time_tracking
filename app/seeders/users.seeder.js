@@ -3,8 +3,8 @@ const UserModel = require("../models/auth/user.model");
 
 const userData = [
   {
-    firstName: "Nohman",
-    lastName: "Janja",
+    firstName: "Andres",
+    lastName: "Gonzalez",
     dni: "44275462W",
     password: bcrypt.hashSync("2062", Number(process.env.BCRYPT_SALT)),
     roleId: 1, // roleId: 1 should be "SuperAdmin"
