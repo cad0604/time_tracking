@@ -5,11 +5,8 @@ const userData = [
   {
     firstName: "Nohman",
     lastName: "Janja",
-    dni: "admin@timetracing.com",
-    password: bcrypt.hashSync(
-      "timeTrace@2024",
-      Number(process.env.BCRYPT_SALT)
-    ),
+    dni: "44275462W",
+    password: bcrypt.hashSync("2062", Number(process.env.BCRYPT_SALT)),
     roleId: 1, // roleId: 1 should be "SuperAdmin"
   },
 ];
