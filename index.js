@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const swaggerUI = require("swagger-ui-express");
 require("dotenv").config();
-const { SwaggerSpecs, SwaggerOptions } = require("../app/utils/common/swagger");
+const { SwaggerSpecs, SwaggerOptions } = require("./app/utils/common/swagger");
 require("dotenv").config();
 
 app.set("trust proxy", true);
@@ -30,7 +30,7 @@ app.all("*", (req, res, next) => {
 require("dotenv").config();
 
 // createDatabase();
-require("../app/routes/index")(app);
+require("./app/routes/index")(app);
 
 app.use((req, res, next) => {
   res.sendFile(path.resolve(process.cwd(), "frontend", "build", "index.html"));
