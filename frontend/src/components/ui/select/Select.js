@@ -7,7 +7,7 @@ export default function BrannSelect({ options, onChange, ...rest }) {
       size="large"
       onChange={onChange}
       options={options}
-      style={{ width: 250 }}
+      style={{ width: "100%" }}
       {...rest}
     />
   );

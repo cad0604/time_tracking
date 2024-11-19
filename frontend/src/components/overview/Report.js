@@ -1,4 +1,4 @@
-import { Col, Row, Table, DatePicker } from "antd";
+import { Col, Row, Table, DatePicker, ConfigProvider } from "antd";
 import BrannSelect from "components/ui/select/Select";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,11 +10,14 @@ import dayjs from "dayjs";
 import BrannUserProfile from "components/ui/avatar/UserProfile";
 import isEmptyObject from "utils/isEmptyObject";
 import BrannSecondaryButton from "components/ui/button/SecondaryButton";
+import { useMobileViewport } from "utils/responsive";
 
 const { RangePicker } = DatePicker;
 
 const AdminReport = () => {
   const dispatch = useDispatch();
+
+  const isMobile = useMobileViewport();
 
   const { timeTracking, isFetchingtimeTracking } = useSelector(
     (state) => state.workflowTimeTracking
@@ -169,21 +172,38 @@ const AdminReport = () => {
         {/* select section */}
         <Col span={24}>
           <Row justify={"space-between"} gutter={[32, 16]}>
-            <Col>
-              <Row justify={"start"} gutter={[32, 16]}>
-                <Col>
+            <Col sm={24} xs={24} md={12}>
+              <Row gutter={[0, 16]} style={{ width: "100%" }}>
+                <Col sm={24} xs={24} md={12}>
                   <BrannSelect
                     placeholder="Seleccionar trabajadora"
                     options={customerArray}
                     onChange={(e) => handleUserSelect(e)}
                   />
                 </Col>
-                <Col>
-                  <RangePicker size="large" onChange={(e) => handleDate(e)} />
+                <Col sm={24} xs={24} md={12}>
+                  <ConfigProvider
+                    theme={{
+                      components: {
+                        DatePicker: {
+                          cellWidth: isMobile ? 20 : 36,
+                        },
+                      },
+                      token: {
+                        borderRadius: "none",
+                      },
+                    }}
+                  >
+                    <RangePicker
+                      size="large"
+                      onChange={(e) => handleDate(e)}
+                      style={{ width: "100%" }}
+                    />
+                  </ConfigProvider>
                 </Col>
               </Row>
             </Col>
-            <Col>
+            <Col sm={24} xs={24} md={5}>
               <BrannSecondaryButton
                 label={"Descargar archivo XLS"}
                 onClick={handleDownload}
@@ -192,6 +212,7 @@ const AdminReport = () => {
                     ? false
                     : true
                 }
+                style={{ width: "100%" }}
               />
             </Col>
           </Row>
