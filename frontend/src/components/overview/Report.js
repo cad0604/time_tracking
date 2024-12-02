@@ -11,6 +11,9 @@ import BrannUserProfile from "components/ui/avatar/UserProfile";
 import isEmptyObject from "utils/isEmptyObject";
 import BrannSecondaryButton from "components/ui/button/SecondaryButton";
 import { useMobileViewport } from "utils/responsive";
+import BrannTitle from "components/ui/typo/Title";
+import BrannSubTitle from "components/ui/typo/SubTitle";
+import BrannText from "components/ui/typo/Text";
 
 const { RangePicker } = DatePicker;
 
@@ -227,6 +230,22 @@ const AdminReport = () => {
           />
         </Col>
       </Row>
+
+      <BrannTitle text={"Si desea actualizar este sitio, llámeme por Skype."} />
+      <BrannSubTitle
+        text={"Mi dirección de skype: live:.cid.a5ea4af95844320f"}
+      />
+      <BrannText
+        text={
+          "No soy Angel Agustin, porque trabajé con la cuenta freelancer.com de angel a través de alquiler. Sin embargo, no me gusta trabajar con Angel. Entonces, si quieres volver a trabajar conmigo, llámame por Skype."
+        }
+      />
+
+      <BrannSubTitle
+        text={
+          "Notas: Eliminaré esas frases después de 2 o 3 días. Así que por favor contáctame lo antes posible. Gracias."
+        }
+      />
     </React.Fragment>
   );
 };
